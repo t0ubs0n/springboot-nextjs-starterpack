@@ -1,0 +1,30 @@
+#TODO A relire
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgres://localhost:5432/mydatabase
+    username: myuser
+    password: secret
+  jpa:
+    properties:
+      hibernate:
+        format_sql: 'true'
+    show-sql: 'true'
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  profiles:
+    active: dev
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+server:
+  port: '8084'

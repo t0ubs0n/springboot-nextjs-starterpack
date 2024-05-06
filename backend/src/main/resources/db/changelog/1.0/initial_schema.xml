@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="1" author="t0ubs0n">
+        <createTable tableName="utilisateurs">
+            <column name="id_utilisateur" type="integer" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="PK_UTILISATEURS"/>
+            </column>
+            <column name="nom" type="varchar(30)"/>
+            <column name="prenom" type="varchar(30)"/>
+            <column name="email" type="varchar(30)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="telephone" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mot_de_passe" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="isAccountNonExpired" type="boolean" defaultValue="false"/>
+            <column name="isAccountNonLocked" type="boolean" defaultValue="false"/>
+            <column name="isCredentialsNonExpired" type="boolean" defaultValue="false"/>
+            <column name="isEnabled" type="boolean" defaultValue="false"/>
+            <column name="role" type="varchar(30)" defaultValue="ROLE_USER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
+
+
+
