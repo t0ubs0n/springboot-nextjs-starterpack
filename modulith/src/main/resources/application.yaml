@@ -41,7 +41,18 @@ jwt:
 
 springdoc:
   api-docs:
-    enabled: true
+    enabled: ${SPRINGDOC_ENABLED:true}
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+  paths-to-match:
+    - /auth/**
+    - /users/**
 
 server:
   port: ${SERVER_PORT:8080}
