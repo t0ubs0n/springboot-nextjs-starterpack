@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 001-create-users
-      author: toubson
+      id: 001-create-table-users
+      author: system
       changes:
         - createTable:
             tableName: users
@@ -14,21 +14,83 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: username
-                  type: VARCHAR(100)
+                  type: VARCHAR(50)
                   constraints:
                     nullable: false
               - column:
                   name: email
                   type: VARCHAR(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: password
-                  type: VARCHAR(255)
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_non_expired
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_non_locked
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: credentials_non_expired
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enabled
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
               - column:
                   name: created_at
                   type: TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+        - addUniqueConstraint:
+            tableName: users
+            columnNames: username
+            constraintName: uk_user_username
+        - addUniqueConstraint:
+            tableName: users
+            columnNames: email
+            constraintName: uk_user_email
         - createIndex:
             tableName: users
             indexName: idx_users_username
             columns:
               - column:
                   name: username
+  - changeSet:
+      id: 002-create-table-user-roles
+      author: system
+      changes:
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_user_roles
+                    foreignKeyName: fk_user_roles_user
+                    references: users(id)
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(50)
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_user_roles
+                    nullable: false

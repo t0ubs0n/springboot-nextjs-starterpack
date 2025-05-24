@@ -2,12 +2,12 @@ spring:
   application:
     name: modulith
   datasource:
-    url: jdbc:postgresql://localhost:5432/modulith_db
-    username: modulith_user
-    password: secret
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/modulith_db}
+    username: ${DB_USERNAME:modulith_user}
+    password: ${DB_PASSWORD:secret}
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: ${JPA_DDL_AUTO:none}
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -16,16 +16,32 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/db.changelog-master.yaml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:8080}
 
 logging:
   level:
-    org.springframework.modulith: INFO
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql: TRACE
+    org.springframework.modulith: ${LOG_LEVEL_MODULITH:INFO}
+    org.hibernate.SQL: ${LOG_LEVEL_SQL:DEBUG}
+    org.hibernate.type.descriptor.sql: ${LOG_LEVEL_SQL_PARAMS:TRACE}
+
+jwt:
+  secret: ${JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+  access-token:
+    expiration:
+      web: ${JWT_ACCESS_EXPIRATION_WEB:900000}      # 15 minutes in milliseconds
+      mobile: ${JWT_ACCESS_EXPIRATION_MOBILE:900000}   # 15 minutes in milliseconds
+  refresh-token:
+    expiration:
+      web: ${JWT_REFRESH_EXPIRATION_WEB:86400000}    # 1 day in milliseconds
+      mobile: ${JWT_REFRESH_EXPIRATION_MOBILE:2592000000} # 30 days in milliseconds
 
 springdoc:
   api-docs:
     enabled: true
 
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
