@@ -36,10 +36,23 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles = new HashSet<>();
 
+    // First name and last name for basic user details
+    private String firstName;
+    private String lastName;
+
     private boolean accountNonExpired = true;
     private boolean accountNonLocked = true;
     private boolean credentialsNonExpired = true;
-    private boolean enabled = true;
+    private boolean enabled = false; // Default to false until email is verified
+
+    // Email verification
+    private String verificationToken;
+    private Instant verificationTokenExpiryDate;
+    private boolean emailVerified = false;
+
+    // Password reset
+    private String resetPasswordToken;
+    private Instant resetPasswordTokenExpiryDate;
 
     @Column(nullable = false, updatable = false)
     private Instant createdAt = Instant.now();

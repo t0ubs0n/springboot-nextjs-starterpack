@@ -1,3 +1,4 @@
+
 databaseChangeLog:
   - changeSet:
       id: 003-insert-default-users
@@ -21,7 +22,31 @@ databaseChangeLog:
                   # Le mot de passe encodé devra être remplacé par une valeur réelle
                   value: "${default.admin.password}"
               - column:
+                  name: first_name
+                  value: "Admin"
+              - column:
+                  name: last_name
+                  value: "System"
+              - column:
+                  name: email_verified
+                  valueBoolean: true
+              - column:
+                  name: account_non_expired
+                  valueBoolean: true
+              - column:
+                  name: account_non_locked
+                  valueBoolean: true
+              - column:
+                  name: credentials_non_expired
+                  valueBoolean: true
+              - column:
+                  name: enabled
+                  valueBoolean: true
+              - column:
                   name: created_at
+                  valueDate: "CURRENT_TIMESTAMP"
+              - column:
+                  name: updated_at
                   valueDate: "CURRENT_TIMESTAMP"
 
         # Insertion des rôles pour l'admin
@@ -62,7 +87,31 @@ databaseChangeLog:
                   # Le mot de passe encodé devra être remplacé par une valeur réelle
                   value: "${default.user.password}"
               - column:
+                  name: first_name
+                  value: "Utilisateur"
+              - column:
+                  name: last_name
+                  value: "Standard"
+              - column:
+                  name: email_verified
+                  valueBoolean: true
+              - column:
+                  name: account_non_expired
+                  valueBoolean: true
+              - column:
+                  name: account_non_locked
+                  valueBoolean: true
+              - column:
+                  name: credentials_non_expired
+                  valueBoolean: true
+              - column:
+                  name: enabled
+                  valueBoolean: true
+              - column:
                   name: created_at
+                  valueDate: "CURRENT_TIMESTAMP"
+              - column:
+                  name: updated_at
                   valueDate: "CURRENT_TIMESTAMP"
 
         # Insertion du rôle pour l'utilisateur standard

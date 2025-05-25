@@ -10,8 +10,13 @@ public class UserToUserResponseMapper {
                 user.getId().toString(),
                 user.getUsername(),
                 user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.isEmailVerified(),
+                user.isEnabled(),
                 user.getRoles(),
-                user.getCreatedAt().toString()
+                user.getCreatedAt().toString(),
+                user.getUpdatedAt() != null ? user.getUpdatedAt().toString() : null
         );
     }
 }

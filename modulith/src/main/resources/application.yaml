@@ -5,6 +5,17 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL_AUTO:none}
@@ -31,24 +42,24 @@ spring:
 
 logging:
   level:
-    org.springframework.modulith: ${LOG_LEVEL_MODULITH:INFO}
-    org.hibernate.SQL: ${LOG_LEVEL_SQL:DEBUG}
-    org.hibernate.type.descriptor.sql: ${LOG_LEVEL_SQL_PARAMS:TRACE}
+    org.springframework.modulith: ${LOG_LEVEL_MODULITH}
+    org.hibernate.SQL: ${LOG_LEVEL_SQL}
+    org.hibernate.type.descriptor.sql: ${LOG_LEVEL_SQL_PARAMS}
 
 jwt:
   secret: ${JWT_SECRET}
   access-token:
     expiration:
-      web: ${JWT_ACCESS_EXPIRATION_WEB:900000}      # 15 minutes in milliseconds
-      mobile: ${JWT_ACCESS_EXPIRATION_MOBILE:900000}   # 15 minutes in milliseconds
+      web: ${JWT_ACCESS_EXPIRATION_WEB}      # 15 minutes in milliseconds
+      mobile: ${JWT_ACCESS_EXPIRATION_MOBILE}   # 15 minutes in milliseconds
   refresh-token:
     expiration:
-      web: ${JWT_REFRESH_EXPIRATION_WEB:86400000}    # 1 day in milliseconds
-      mobile: ${JWT_REFRESH_EXPIRATION_MOBILE:2592000000} # 30 days in milliseconds
+      web: ${JWT_REFRESH_EXPIRATION_WEB}    # 1 day in milliseconds
+      mobile: ${JWT_REFRESH_EXPIRATION_MOBILE} # 30 days in milliseconds
 
 springdoc:
   api-docs:
-    enabled: ${SPRINGDOC_ENABLED:true}
+    enabled: ${SPRINGDOC_ENABLED}
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
@@ -62,4 +73,14 @@ springdoc:
     - /users/**
 
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT}
+
+app:
+  email:
+    from: ${APP_EMAIL_FROM}
+  base-url: ${APP_BASE_URL}
+  token:
+    verification:
+      expiration: ${VERIFICATION_TOKEN_EXPIRATION} # 24 hours in milliseconds
+    reset-password:
+      expiration: ${RESET_PASSWORD_TOKEN_EXPIRATION} # 1 hour in milliseconds

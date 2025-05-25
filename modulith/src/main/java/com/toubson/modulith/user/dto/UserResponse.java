@@ -8,6 +8,11 @@ public record UserResponse(
         String id,
         String username,
         String email,
+        String firstName,
+        String lastName,
+        boolean emailVerified,
+        boolean enabled,
         Set<UserRole> roles,
-        String createdAt) {
+        String createdAt,
+        String updatedAt) {
 }

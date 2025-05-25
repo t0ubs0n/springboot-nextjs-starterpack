@@ -28,6 +28,30 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: first_name
+                  type: VARCHAR(50)
+              - column:
+                  name: last_name
+                  type: VARCHAR(50)
+              - column:
+                  name: verification_token
+                  type: VARCHAR(255)
+              - column:
+                  name: verification_token_expiry_date
+                  type: TIMESTAMP
+              - column:
+                  name: email_verified
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: reset_password_token
+                  type: VARCHAR(255)
+              - column:
+                  name: reset_password_token_expiry_date
+                  type: TIMESTAMP
+              - column:
                   name: account_non_expired
                   type: boolean
                   defaultValueBoolean: true
@@ -48,7 +72,7 @@ databaseChangeLog:
               - column:
                   name: enabled
                   type: boolean
-                  defaultValueBoolean: true
+                  defaultValueBoolean: false
                   constraints:
                     nullable: false
               - column:
@@ -71,6 +95,18 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
+        - createIndex:
+            tableName: users
+            indexName: idx_users_verification_token
+            columns:
+              - column:
+                  name: verification_token
+        - createIndex:
+            tableName: users
+            indexName: idx_users_reset_password_token
+            columns:
+              - column:
+                  name: reset_password_token
   - changeSet:
       id: 002-create-table-user-roles
       author: system
