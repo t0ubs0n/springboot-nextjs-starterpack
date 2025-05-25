@@ -1,3 +1,7 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/user/changelog-001-user.yaml
+      file: user/changelog-001-user.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: user/changelog-002-default-users.yaml
+      relativeToChangelogFile: true

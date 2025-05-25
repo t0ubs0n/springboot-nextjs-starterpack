@@ -1,0 +1,77 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-insert-default-users
+      author: system
+      changes:
+        # Création de l'utilisateur admin (avec les rôles ADMIN et USER)
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: "00000000-0000-0000-0000-000000000001"
+              - column:
+                  name: username
+                  value: "${default.admin.username}"
+              - column:
+                  name: email
+                  value: "${default.admin.email}"
+              - column:
+                  name: password
+                  # Le mot de passe encodé devra être remplacé par une valeur réelle
+                  value: "${default.admin.password}"
+              - column:
+                  name: created_at
+                  valueDate: "CURRENT_TIMESTAMP"
+
+        # Insertion des rôles pour l'admin
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: "00000000-0000-0000-0000-000000000001"
+              - column:
+                  name: role
+                  value: "ROLE_ADMIN"
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: "00000000-0000-0000-0000-000000000001"
+              - column:
+                  name: role
+                  value: "ROLE_USER"
+
+        # Création de l'utilisateur standard (avec le rôle USER uniquement)
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: "00000000-0000-0000-0000-000000000002"
+              - column:
+                  name: username
+                  value: "${default.user.username}"
+              - column:
+                  name: email
+                  value: "${default.user.email}"
+              - column:
+                  name: password
+                  # Le mot de passe encodé devra être remplacé par une valeur réelle
+                  value: "${default.user.password}"
+              - column:
+                  name: created_at
+                  valueDate: "CURRENT_TIMESTAMP"
+
+        # Insertion du rôle pour l'utilisateur standard
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: "00000000-0000-0000-0000-000000000002"
+              - column:
+                  name: role
+                  value: "ROLE_USER"
