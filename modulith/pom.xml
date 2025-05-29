@@ -234,6 +234,16 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>11.1.0</version>
+				<configuration>
+					<suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+					<failBuildOnCVSS>7</failBuildOnCVSS>
+					<skipTestScope>true</skipTestScope>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
