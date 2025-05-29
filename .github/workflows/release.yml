@@ -1,0 +1,96 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        type: string
+
+env:
+  JAVA_VERSION: '21'
+  NODE_VERSION: '20'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'temurin'
+        
+    - name: Set up Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: frontend-next/package-lock.json
+
+    - name: Cache Maven packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+
+    - name: Build backend
+      run: |
+        cd modulith
+        ./mvnw clean package -DskipTests
+
+    - name: Build frontend
+      run: |
+        cd frontend-next
+        npm ci
+        npm run build
+
+    - name: Create release archive
+      run: |
+        mkdir -p release-artifacts
+        cp modulith/target/*.jar release-artifacts/
+        tar -czf release-artifacts/frontend-build.tar.gz -C frontend-next .next
+        
+    - name: Get version
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+        else
+          echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ steps.version.outputs.VERSION }}
+        name: Release ${{ steps.version.outputs.VERSION }}
+        draft: false
+        prerelease: false
+        files: |
+          release-artifacts/*.jar
+          release-artifacts/*.tar.gz
+        body: |
+          ## Changes
+          
+          - Backend modulith application
+          - Frontend Next.js application
+          
+          ## Artifacts
+          
+          - `modulith-*.jar` - Backend Spring Boot application
+          - `frontend-build.tar.gz` - Frontend Next.js build
+          
+          ## Docker Images
+          
+          Backend images are available on Docker Hub:
+          - `your-username/modulith:${{ steps.version.outputs.VERSION }}`
+          - `your-username/modulith:latest`
