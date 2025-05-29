@@ -20,27 +20,46 @@ Ce projet est une coquille prête à l'emploi pour des applications Spring Boot 
 
 ---
 
+## 🚀 Fonctionnalités disponibles
+
+### Authentification
+
+- Authentification et Gesttion des autorisations
+- Connexion avec JWT
+- Connexion web et mobile
+- Gestion des rôles et permissions
+- Mot de passe oublié
+- Changement de mot de passe
+
+### Users
+
+- Inscription des utilisateurs
+  - Vérification de l'email
+- Mise à jour du profil utilisateur
+
+---
+
 ## 🧩 Librairies utilisées
 
-| Librairie                             | Rôle |
-|--------------------------------------|------|
-| `spring-boot-starter-web`            | API REST |
-| `spring-boot-starter-data-jpa`       | Persistance JPA |
-| `spring-boot-starter-security`       | Sécurité (si besoin d’authentification) |
-| `spring-boot-starter-actuator`       | Monitoring / Healthcheck |
-| `spring-modulith-starter-core`       | Base de Spring Modulith |
-| `spring-modulith-starter-jpa`        | Intégration JPA avec Modulith |
-| `spring-modulith-actuator`           | Introspection des modules |
-| `spring-modulith-observability`      | Traces entre modules |
-| `liquibase-core`                     | Migration de base de données |
-| `spring-boot-devtools`               | Reload à chaud |
-| `postgresql`                         | Driver PostgreSQL |
-| `testcontainers + spring-boot-testcontainers` | Tests intégrés avec PostgreSQL |
-| `spring-modulith-starter-test`       | Tests unitaires modulith |
-| `spring-security-test`               | Tests sécurité |
-| `mockito-core`                       | Tests unitaires |
-| `assertj-core`                       | Assertions |
-| `lombok`                             | Réduction du code boilerplate |
+| Librairie                                     | Rôle                                    |
+|-----------------------------------------------|-----------------------------------------|
+| `spring-boot-starter-web`                     | API REST                                |
+| `spring-boot-starter-data-jpa`                | Persistance JPA                         |
+| `spring-boot-starter-security`                | Sécurité (si besoin d'authentification) |
+| `spring-boot-starter-actuator`                | Monitoring / Healthcheck                |
+| `spring-modulith-starter-core`                | Base de Spring Modulith                 |
+| `spring-modulith-starter-jpa`                 | Intégration JPA avec Modulith           |
+| `spring-modulith-actuator`                    | Introspection des modules               |
+| `spring-modulith-observability`               | Traces entre modules                    |
+| `liquibase-core`                              | Migration de base de données            |
+| `spring-boot-devtools`                        | Reload à chaud                          |
+| `postgresql`                                  | Driver PostgreSQL                       |
+| `testcontainers + spring-boot-testcontainers` | Tests intégrés avec PostgreSQL          |
+| `spring-modulith-starter-test`                | Tests unitaires modulith                |
+| `spring-security-test`                        | Tests sécurité                          |
+| `mockito-core`                                | Tests unitaires                         |
+| `assertj-core`                                | Assertions                              |
+| `lombok`                                      | Réduction du code boilerplate           |
 
 ---
 
@@ -56,3 +75,4 @@ Ce projet est une coquille prête à l'emploi pour des applications Spring Boot 
 ```bash
 ./mvnw clean package
 docker-compose up --build
+```
