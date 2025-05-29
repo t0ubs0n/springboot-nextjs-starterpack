@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    url: ${TEST_DB_URL:jdbc:tc:postgresql:latest:///testdb}
+    username: ${TEST_DB_USERNAME:test}
+    password: ${TEST_DB_PASSWORD:test}
+  jpa:
+    hibernate:
+      ddl-auto: ${TEST_JPA_DDL_AUTO:create-drop}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${TEST_JWT_ISSUER_URI:http://localhost:8080}
+
+logging:
+  level:
+    org.springframework.modulith: ${TEST_LOG_LEVEL_MODULITH:INFO}
+    org.hibernate.SQL: ${TEST_LOG_LEVEL_SQL:DEBUG}
+    org.hibernate.type.descriptor.sql: ${TEST_LOG_LEVEL_SQL_PARAMS:TRACE}
+    org.springframework.security: ${TEST_LOG_LEVEL_SECURITY:DEBUG}
+
+jwt:
+  secret: ${TEST_JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+  access-token:
+    expiration:
+      web: ${TEST_JWT_ACCESS_EXPIRATION_WEB:900000}      # 15 minutes in milliseconds
+      mobile: ${TEST_JWT_ACCESS_EXPIRATION_MOBILE:900000}   # 15 minutes in milliseconds
+  refresh-token:
+    expiration:
+      web: ${TEST_JWT_REFRESH_EXPIRATION_WEB:86400000}    # 1 day in milliseconds
+      mobile: ${TEST_JWT_REFRESH_EXPIRATION_MOBILE:2592000000} # 30 days in milliseconds
+
+server:
+  port: ${TEST_SERVER_PORT:0}  # Use a random port for testing by default
+
