@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 001-create-products
-      author: toubson
+      author: system
       changes:
         - createTable:
             tableName: products
