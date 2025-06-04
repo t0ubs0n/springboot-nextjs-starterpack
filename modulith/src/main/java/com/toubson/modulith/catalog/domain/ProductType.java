@@ -1,9 +1,12 @@
 package com.toubson.modulith.catalog.domain;
 
+import lombok.Getter;
+
 /**
  * Enum representing different types of products.
  * This allows for polymorphic behavior while maintaining a unified API.
  */
+@Getter
 public enum ProductType {
     STANDARD("Standard product"),
     DIGITAL("Digital product"),
@@ -17,7 +20,4 @@ public enum ProductType {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
 }
