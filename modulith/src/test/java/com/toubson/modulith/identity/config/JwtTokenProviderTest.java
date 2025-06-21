@@ -1,4 +1,4 @@
-package com.toubson.modulith.security.config;
+package com.toubson.modulith.identity.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,10 +1,10 @@
-package com.toubson.modulith.user;
+package com.toubson.modulith.identity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.test.ApplicationModuleTest;
 
 @ApplicationModuleTest
-class UserModuleTests {
+class IdentityModuleTests {
 
     @Test
     void moduleLoads() {

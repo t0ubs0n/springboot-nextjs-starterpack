@@ -1,7 +1,7 @@
-package com.toubson.modulith.user.cucumber;
+package com.toubson.modulith.identity.cucumber;
 
-import com.toubson.modulith.user.application.EmailService;
-import com.toubson.modulith.user.application.UserCreatedEvent;
+import com.toubson.modulith.notification.api.EmailService;
+import com.toubson.modulith.shared.events.UserCreatedEvent;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;

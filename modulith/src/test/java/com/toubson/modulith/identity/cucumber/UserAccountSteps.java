@@ -1,11 +1,11 @@
-package com.toubson.modulith.user.cucumber;
+package com.toubson.modulith.identity.cucumber;
 
-import com.toubson.modulith.user.application.EmailService;
-import com.toubson.modulith.user.application.UserService;
-import com.toubson.modulith.user.domain.User;
-import com.toubson.modulith.user.dto.RegistrationRequest;
-import com.toubson.modulith.user.dto.UpdateUserDetailsRequest;
-import com.toubson.modulith.user.infrastructure.UserRepository;
+import com.toubson.modulith.identity.application.UserService;
+import com.toubson.modulith.identity.domain.User;
+import com.toubson.modulith.identity.dto.RegistrationRequest;
+import com.toubson.modulith.identity.dto.UpdateUserDetailsRequest;
+import com.toubson.modulith.identity.infrastructure.UserRepository;
+import com.toubson.modulith.notification.api.EmailService;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

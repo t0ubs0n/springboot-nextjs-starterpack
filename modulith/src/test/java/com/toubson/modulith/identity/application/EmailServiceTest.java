@@ -1,4 +1,4 @@
-package com.toubson.modulith.user.application;
+package com.toubson.modulith.identity.application;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -21,8 +21,6 @@ class EmailServiceTest {
 
     private final String testEmail = "test@example.com";
     private final String testToken = "test-token-123";
-    private final String fromEmail = "noreply@example.com";
-    private final String baseUrl = "http://localhost:3000";
     @Mock
     private JavaMailSender mailSender;
     @InjectMocks
@@ -31,8 +29,8 @@ class EmailServiceTest {
     @BeforeEach
     void setUp() {
         // Set up properties
-        ReflectionTestUtils.setField(emailService, "fromEmail", fromEmail);
-        ReflectionTestUtils.setField(emailService, "baseUrl", baseUrl);
+        ReflectionTestUtils.setField(emailService, "fromEmail", "noreply@example.com");
+        ReflectionTestUtils.setField(emailService, "baseUrl", "http://localhost:3000");
 
         // Mock mail sender to return a real MimeMessage
         when(mailSender.createMimeMessage()).thenReturn(mock(MimeMessage.class));

@@ -1,11 +1,11 @@
-package com.toubson.modulith.user.api;
+package com.toubson.modulith.identity.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.toubson.modulith.security.utils.AuthenticationHelper;
-import com.toubson.modulith.user.application.UserService;
-import com.toubson.modulith.user.domain.User;
-import com.toubson.modulith.user.domain.UserRole;
-import com.toubson.modulith.user.dto.*;
+import com.toubson.modulith.identity.application.AuthenticationService;
+import com.toubson.modulith.identity.application.UserService;
+import com.toubson.modulith.identity.domain.User;
+import com.toubson.modulith.identity.domain.UserRole;
+import com.toubson.modulith.identity.dto.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,7 +44,7 @@ class AccountControllerTest {
     @Mock
     private UserService userService;
     @Mock
-    private AuthenticationHelper authenticationHelper;
+    private AuthenticationService authenticationService;
     @InjectMocks
     private AccountController accountController;
     private User testUser;
@@ -72,7 +72,7 @@ class AccountControllerTest {
 
         // Reset mocks
         reset(userService);
-        reset(authenticationHelper);
+        reset(authenticationService);
     }
 
     @Test

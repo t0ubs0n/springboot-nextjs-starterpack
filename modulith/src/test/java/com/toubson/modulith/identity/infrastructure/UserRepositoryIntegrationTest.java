@@ -1,7 +1,7 @@
-package com.toubson.modulith.user.infrastructure;
+package com.toubson.modulith.identity.infrastructure;
 
-import com.toubson.modulith.user.domain.User;
-import com.toubson.modulith.user.domain.UserRole;
+import com.toubson.modulith.identity.domain.User;
+import com.toubson.modulith.identity.domain.UserRole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +32,7 @@ class UserRepositoryIntegrationTest {
     private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:latest");
     private final String testUsername = "testuser";
     private final String testEmail = "test@example.com";
-    private final String testPassword = "password";
     private final String testVerificationToken = "verification-token";
-    private final String testResetToken = "reset-token";
     @Autowired
     private UserRepository userRepository;
     private User testUser;
@@ -56,7 +54,7 @@ class UserRepositoryIntegrationTest {
         testUser.setId(UUID.randomUUID());
         testUser.setUsername(testUsername);
         testUser.setEmail(testEmail);
-        testUser.setPassword(testPassword);
+        testUser.setPassword("password");
         testUser.setEnabled(false);
         testUser.setEmailVerified(false);
         testUser.setFirstName("Test");
@@ -171,6 +169,7 @@ class UserRepositoryIntegrationTest {
     @Test
     void findByResetPasswordToken_ExistingToken_ReturnsUser() {
         // Arrange
+        String testResetToken = "reset-token";
         testUser.setResetPasswordToken(testResetToken);
         testUser.setResetPasswordTokenExpiryDate(Instant.now().plusSeconds(3600));
         userRepository.save(testUser);

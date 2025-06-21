@@ -1,6 +1,6 @@
-package com.toubson.modulith.security.utils;
+package com.toubson.modulith.identity.utils;
 
-import com.toubson.modulith.security.config.JwtTokenProvider;
+import com.toubson.modulith.identity.config.JwtTokenProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;

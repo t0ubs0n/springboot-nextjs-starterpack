@@ -1,4 +1,4 @@
-package com.toubson.modulith.user.cucumber;
+package com.toubson.modulith.identity.cucumber;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
@@ -11,7 +11,7 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.toubson.modulith.user.cucumber")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.toubson.modulith.identity.cucumber")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
 public class CucumberRunnerTest {
 }

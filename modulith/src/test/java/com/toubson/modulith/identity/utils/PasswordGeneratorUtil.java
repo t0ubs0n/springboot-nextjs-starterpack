@@ -1,4 +1,4 @@
-package com.toubson.modulith.security.utils;
+package com.toubson.modulith.identity.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
