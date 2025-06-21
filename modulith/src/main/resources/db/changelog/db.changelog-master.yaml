@@ -5,3 +5,9 @@ databaseChangeLog:
   - include:
       file: user/changelog-002-default-users.yaml
       relativeToChangelogFile: true
+  - include:
+      file: catalog/changelog-001-catalog.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: catalog/changelog-002-catalog.yaml
+      relativeToChangelogFile: true
